@@ -1,8 +1,8 @@
 export class User {
   constructor(
-    public user_email: string,
+    public email: string,
     public pseudo: string,
-    public user_id: string,
+    public id: string,
     public isActive: boolean
   ) {}
 }
