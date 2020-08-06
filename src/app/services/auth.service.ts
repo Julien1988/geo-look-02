@@ -7,15 +7,35 @@ import * as firebase from 'firebase';
 export class AuthService {
   constructor() {}
 
-  createUserWithEmailAndPassword() {
-    firebase
-      .auth()
-      .createUserWithEmailAndPassword(email, password)
-      .catch(function (error) {
-        // Handle Errors here.
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        // ...
-      });
+  createUserWithEmailAndPassword(email: string, password: string) {
+    return new Promise((resovle, reject) => {
+      firebase
+        .auth()
+        .createUserWithEmailAndPassword(email, password)
+        .then(
+          () => {
+            resovle();
+          },
+          (error) => {
+            reject(error);
+          }
+        );
+    });
+  }
+
+  signInWithEmailAndPassword(email: string, password: string) {
+    return new Promise((resolve, reject) => {
+      firebase
+        .auth()
+        .signInWithEmailAndPassword(email, password)
+        .then(
+          () => {
+            resolve();
+          },
+          (error) => {
+            reject(error);
+          }
+        );
+    });
   }
 }
