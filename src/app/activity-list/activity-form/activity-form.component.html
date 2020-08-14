@@ -23,7 +23,14 @@
       <div class="form-group">
         <label>
           Type:
-          <input class="form-control" type="text" formControlName="ActivityType">
+
+          <select class="form-control" formControlName="ActivityType">
+            <option>Sport</option>
+            <option>Culturel</option>
+            <option>Fête</option>
+            <option>Jeux de société</option>
+            <option>Musique</option>
+          </select>
         </label>
       </div>
       <button class="btn btn-primary" type="submit" [disabled]="!activityForm.valid">Submit</button>
