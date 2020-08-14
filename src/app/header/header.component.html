@@ -6,9 +6,15 @@
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
+    <ul class="navbar-nav mr-auto ">
       <li class="nav-item">
-        <a class="nav-link" routerLink="/auth/signup" routerLinkActive="active">Créer un compte</a>
+        <a class="nav-link" *ngIf="!isAuth" routerLink="/auth/signup" routerLinkActive="active">Créer un compte</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" *ngIf="!isAuth" routerLink="/auth/signin" routerLinkActive="active">Connexion</a>
+      </li>
+      <li>
+        <a (click)="onSignOut()" *ngIf="isAuth" style="cursor:pointer">Déconnexion</a>
       </li>
 
     </ul>
