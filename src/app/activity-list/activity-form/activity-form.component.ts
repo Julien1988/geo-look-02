@@ -11,6 +11,7 @@ export class ActivityFormComponent implements OnInit {
   activityForm = new FormGroup({
     ActivityTitle: new FormControl(''),
     ActivityDescription: new FormControl(''),
+    ActivityLocalisation: new FormControl(''),
     ActivityDate: new FormControl(''),
     ActivityType: new FormControl(''),
   });
