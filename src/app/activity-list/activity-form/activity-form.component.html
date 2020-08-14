@@ -1,6 +1,7 @@
 <div class="row p-4">
   <div class="col-sm-08 col-sm-offset-2">
     <h2>Proposer une activité</h2>
+    <!-- https://angular.io/guide/reactive-forms -->
     <form [formGroup]="activityForm" (ngSubmit)="onSubmit()">
       <div class="form-group">
         <label>
@@ -23,7 +24,6 @@
       <div class="form-group">
         <label>
           Type:
-
           <select class="form-control" formControlName="ActivityType" required>
             <option>Sport</option>
             <option>Culturel</option>
