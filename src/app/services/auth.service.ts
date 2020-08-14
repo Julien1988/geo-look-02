@@ -7,7 +7,12 @@ import * as firebase from 'firebase';
 export class AuthService {
   constructor() {}
 
-  createUserWithEmailAndPassword(email: string, password: string) {
+  createUserWithEmailAndPassword(
+    email: string,
+    password: string,
+    firstName: string,
+    lastName: string
+  ) {
     return new Promise((resovle, reject) => {
       firebase
         .auth()
@@ -15,12 +20,30 @@ export class AuthService {
         .then(
           () => {
             resovle();
+            this.updateUserProfile(firstName, lastName);
           },
           (error) => {
             reject(error);
           }
         );
     });
+  }
+
+  // https://firebase.google.com/docs/auth/web/manage-users#update_a_users_profile
+  updateUserProfile(firstName, lastName) {
+    const user = firebase.auth().currentUser;
+    console.log('firstName', firstName);
+    console.log(user);
+    user
+      .updateProfile({
+        displayName: 'First name : ' + firstName + ' LastName : ' + lastName,
+      })
+      .then(function () {
+        console.log('ok');
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   }
 
   signInWithEmailAndPassword(email: string, password: string) {

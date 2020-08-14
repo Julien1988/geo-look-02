@@ -28,20 +28,26 @@ export class SignupComponent implements OnInit {
         '',
         [Validators.required, Validators.pattern(/[0-9a-zA-Z]{6,}/)],
       ],
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
     });
   }
 
   onSubmit() {
     const email = this.signupForm.get('email').value;
     const password = this.signupForm.get('password').value;
-    const pseudo = this.signupForm.get('pseudo').value;
-    this.authService.createUserWithEmailAndPassword(email, password).then(
-      () => {
-        this.router.navigate(['/activities']);
-      },
-      (error) => {
-        this.errorMessage = error;
-      }
-    );
+    const firstName = this.signupForm.get('firstName').value;
+    const lastName = this.signupForm.get('lastName').value;
+
+    this.authService
+      .createUserWithEmailAndPassword(email, password, firstName, lastName)
+      .then(
+        () => {
+          this.router.navigate(['/']);
+        },
+        (error) => {
+          this.errorMessage = error;
+        }
+      );
   }
 }
